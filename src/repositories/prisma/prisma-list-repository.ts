@@ -17,4 +17,13 @@ export class PrismaListRepository implements ListRepository {
             data: list
         })
     }
+
+    async update(listId: string, list: Prisma.ListUpdateInput): Promise<void> {
+        await prisma.list.update({
+            where: {
+                id: listId
+            },
+            data: list
+        })
+    }
 }
