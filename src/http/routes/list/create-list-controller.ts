@@ -1,7 +1,6 @@
 import {FastifyInstance} from "fastify";
 import {ZodTypeProvider} from "fastify-type-provider-zod";
 import {z} from "zod";
-import {makeCreateTaskFactory} from "../../../factories/task/make-create-task-factory";
 import {makeCreateListFactory} from "../../../factories/list/make-create-list-factory";
 
 export function createListController(app: FastifyInstance) {
@@ -17,7 +16,7 @@ export function createListController(app: FastifyInstance) {
         const body = request.body
         const task = await useCase.execute(body)
 
-        return reply.status(200).send({
+        return reply.status(201).send({
             task
         })
     })

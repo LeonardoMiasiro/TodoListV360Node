@@ -18,7 +18,7 @@ export function createTaskController(app: FastifyInstance) {
         const body = request.body
         const task = await useCase.execute(body)
 
-        return reply.status(200).send({
+        return reply.status(201).send({
             task
         })
     })

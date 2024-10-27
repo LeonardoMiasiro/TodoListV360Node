@@ -26,4 +26,12 @@ export class PrismaListRepository implements ListRepository {
             data: list
         })
     }
+
+    async delete(id: string): Promise<void> {
+        await prisma.list.delete({
+            where: {
+                id: id
+            }
+        })
+    }
 }

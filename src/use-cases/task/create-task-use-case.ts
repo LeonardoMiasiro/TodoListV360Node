@@ -10,12 +10,14 @@ interface request {
 export class CreateTaskUseCase {
     constructor(private taskRepository: TaskRepository) {}
 
-    async execute(params: request): Promise<void> {
+    async execute({name,listId,listPosition,description}: request): Promise<void> {
         await this.taskRepository.create({
-            ...params,
+            name,
+            description,
+            listPosition,
             list: {
                 connect:{
-                    id: params.listId
+                    id: listId
                 }
             }
         })

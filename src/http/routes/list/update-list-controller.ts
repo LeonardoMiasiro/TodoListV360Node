@@ -3,7 +3,7 @@ import {ZodTypeProvider} from "fastify-type-provider-zod";
 import {z} from "zod";
 import {makeUpdateListFactory} from "../../../factories/list/make-update-list-factory";
 
-export function UpdateListController(app: FastifyInstance) {
+export function updateListController(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().put("/list/:id", {
         schema: {
             params: z.object({
