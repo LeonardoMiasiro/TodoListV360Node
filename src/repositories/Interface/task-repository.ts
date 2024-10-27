@@ -1,5 +1,6 @@
-import {Task} from "@prisma/client";
+import {Prisma, Task} from "@prisma/client";
 
 export interface TaskRepository {
-    getById(id: string): Promise<Task | undefined>;
+    getById(id: string): Promise<Task | null>;
+    create(task: Prisma.TaskCreateInput): Promise<void>;
 }
