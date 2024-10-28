@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch src/http/server.ts --config ./vite.config.ts",
+    "test": "vitest run --dir ./src/use-cases --config ./vite.config.ts",
+    "test:watch": "vitest --dir ./src/use-cases",
+    "test:e2e": "vitest run --config ./vite.config.ts",
+    "test:e2e:watch": "vitest --config ./vite.config.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +24,11 @@
   },
   "devDependencies": {
     "@types/node": "^22.8.1",
+    "@types/supertest": "^6.0.2",
     "prisma": "^5.21.1",
+    "supertest": "^7.0.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
   }
 }

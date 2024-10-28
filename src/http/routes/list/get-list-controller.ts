@@ -1,7 +1,7 @@
 import {FastifyInstance} from "fastify";
 import {ZodTypeProvider} from "fastify-type-provider-zod";
 import {z} from "zod";
-import {makeListFactory} from "../../../factories/list/make-list-factory";
+import {makeListFactory} from "../../../factories/list/make-get-list-factory";
 
 export function getListController(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().get("/list/:id", {

@@ -7,7 +7,7 @@ import {listRoutes} from "./routes/list/routes";
 import { ZodError} from "zod";
 import {ErrorHandlerGlobal} from "../use-cases/_errors/error-handler";
 
-const app = fastify().withTypeProvider <ZodTypeProvider> ()
+export const app = fastify().withTypeProvider <ZodTypeProvider> ()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)

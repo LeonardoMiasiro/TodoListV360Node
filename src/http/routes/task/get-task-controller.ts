@@ -1,7 +1,7 @@
 import {FastifyInstance} from "fastify";
 import {ZodTypeProvider} from "fastify-type-provider-zod";
 import {z} from "zod";
-import {makeTaskFactory} from "../../../factories/task/make-task-factory";
+import {makeTaskFactory} from "../../../factories/task/make-get-task-factory";
 
 export function getTaskController(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().get("/task/:id", {
