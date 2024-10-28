@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/http/server.ts --config ./vite.config.ts",
-    "test": "vitest run --dir ./src/use-cases --config ./vite.config.ts",
+    "env-test:load": "npx dotenv -e .env.test --",
+    "test": "npm run env-test:load vitest run --dir ./src/use-cases",
     "test:watch": "vitest --dir ./src/use-cases",
     "test:e2e": "vitest run --config ./vite.config.ts",
     "test:e2e:watch": "vitest --config ./vite.config.ts"
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^22.8.1",
     "@types/supertest": "^6.0.2",
+    "dotenv-cli": "^7.4.2",
     "prisma": "^5.21.1",
     "supertest": "^7.0.0",
     "tsx": "^4.19.2",
