@@ -4,7 +4,7 @@ import {z} from "zod";
 import {makeChangeTaskPositionTaskFactory} from "../../../factories/task/make-change-task-position-factory";
 
 export function changeTaskPositionController(app: FastifyInstance) {
-    app.withTypeProvider<ZodTypeProvider>().put("/task/:id", {
+    app.withTypeProvider<ZodTypeProvider>().put("/taskPositionChange/:id", {
         schema: {
             params: z.object({
                 id: z.string()

@@ -34,4 +34,14 @@ export class PrismaListRepository implements ListRepository {
             }
         })
     }
+
+    async getAllList(): Promise<List[]> {
+        const list = await prisma.list.findMany({
+            include: {
+                tasks: true
+            }
+        })
+
+        return list
+    }
 }
