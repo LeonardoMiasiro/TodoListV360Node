@@ -4,6 +4,7 @@ import {createListController} from "./create-list-controller";
 import {deleteListController} from "./delete-list-controller";
 import {updateListController} from "./update-list-controller";
 import {getAllListController} from "./get-all-list-controller";
+import {changeListPositionController} from "./change-list-position-controller";
 
 export function listRoutes(app: FastifyInstance) {
     app.register(getListController)
@@ -11,4 +12,5 @@ export function listRoutes(app: FastifyInstance) {
     app.register(updateListController)
     app.register(deleteListController)
     app.register(getAllListController)
+    app.register(changeListPositionController)
 }
