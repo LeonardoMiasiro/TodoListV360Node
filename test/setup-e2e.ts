@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 import { execSync } from 'node:child_process';
 import {prisma} from "../src/lib/prisma";
@@ -13,7 +12,6 @@ function generateUniqueDatabaseURL(schemaId: string) {
     const url = new URL(process.env.DATABASE_URL);
 
     url.searchParams.set('schema', schemaId);
-    console.log(url)
     return url.toString();
 }
 
@@ -28,8 +26,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-    console.log(schemaId)
     await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`);
-    await prisma.$disconnect;
+    await prisma.$disconnect();
 
 });

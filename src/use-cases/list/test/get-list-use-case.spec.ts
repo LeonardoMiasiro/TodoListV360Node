@@ -1,8 +1,7 @@
-import {afterAll, beforeEach, describe, expect} from "vitest";
+import {beforeEach, describe, expect} from "vitest";
 import {makeGetListFactory} from "../../../factories/list/make-get-list-factory";
 import {prisma} from "../../../lib/prisma";
 import {randomUUID} from "node:crypto";
-import {app} from "../../../http/server";
 
 describe('Get List', () => {
     const sut = makeGetListFactory()
