@@ -1,11 +1,11 @@
 import {beforeEach, describe, expect} from "vitest";
-import {makeGetListFactory} from "../../../factories/list/make-get-list-factory";
 import {prisma} from "../../../lib/prisma";
 import {randomUUID} from "node:crypto";
+import {makeDeleteListFactory} from "../../../factories/list/make-delete-list-factory";
 import {execSync} from "node:child_process";
 
-describe('Get List', () => {
-    const sut = makeGetListFactory()
+describe('Delete List', () => {
+    const sut = makeDeleteListFactory()
     const listId = randomUUID()
 
     beforeAll(async () => {
@@ -21,19 +21,16 @@ describe('Get List', () => {
             data: {
                 id: listId,
                 name: 'Lista 1',
-                position: 199
+                position: 1
             }
         })
     })
 
-
-    it('should be able to get a list by Id', async () => {
-        const {list} = await sut.execute({
+    it('should be able to delete a list by Id', async () => {
+        await sut.execute({
             id: listId
         })
 
-        expect(list.name).toBe("Lista 1")
-        expect(list.position).toBe(199)
-
+        expect(await prisma.list.findMany()).toHaveLength(0)
     });
 })

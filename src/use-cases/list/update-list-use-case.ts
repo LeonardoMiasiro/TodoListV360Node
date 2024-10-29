@@ -3,8 +3,8 @@ import {UpdateFailed} from "../_errors/update-failed";
 
 interface request {
     id: string
-    name: string
-    position: number
+    name?: string
+    position?: number
 }
 
 export class UpdateListUseCase {

@@ -3,10 +3,10 @@ import {UpdateFailed} from "../_errors/update-failed";
 
 interface request {
     id: string
-    name: string;
-    description: string | null;
-    listId: string;
-    listPosition: number
+    name?: string;
+    description?: string | null;
+    listId?: string;
+    listPosition?: number
 }
 
 export class UpdateTaskUseCase {
