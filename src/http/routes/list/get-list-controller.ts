@@ -1,7 +1,7 @@
 import {FastifyInstance} from "fastify";
 import {ZodTypeProvider} from "fastify-type-provider-zod";
 import {z} from "zod";
-import {makeListFactory} from "../../../factories/list/make-get-list-factory";
+import {makeGetListFactory} from "../../../factories/list/make-get-list-factory";
 
 export function getListController(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().get("/list/:id", {
@@ -12,8 +12,8 @@ export function getListController(app: FastifyInstance) {
         }
     }, async (request, reply) => {
         const {id} = request.params
-        const useCase = makeListFactory()
-        const list = await useCase.execute({id})
+        const useCase = makeGetListFactory()
+        const {list} = await useCase.execute({id})
 
         return reply.status(200).send({
             list

@@ -1,19 +1,20 @@
 import {PrismaClient} from "@prisma/client";
 import { randomUUID } from "node:crypto";
+import {env} from "../env/env";
 
 class PrismaSingleton extends PrismaClient {
     private schema: string
     constructor(){
-        if (!process.env.DATABASE_URL) {
+        if (!env.DATABASE_URL) {
             throw new Error('Please provide a DATABASE_URL environment variable');
         }
 
-        let database_url = process.env.DATABASE_URL
+        let database_url = env.DATABASE_URL
 
-        if(process.env.NODE_ENV === 'test') {
+        if(env.NODE_ENV === 'test') {
             const schema = randomUUID();
 
-            const url = new URL(process.env.DATABASE_URL);
+            const url = new URL(env.DATABASE_URL);
 
             url.searchParams.set('schema', schema);
 

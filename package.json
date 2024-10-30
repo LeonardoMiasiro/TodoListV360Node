@@ -8,9 +8,9 @@
     "dev": "tsx watch src/http/server.ts --config ./vite.config.ts",
     "env-test:load": "npx dotenv -e .env.test --",
     "test": "npm run env-test:load vitest run --dir ./src/use-cases",
-    "test:watch": "vitest --dir ./src/use-cases",
-    "test:e2e": "vitest run --config ./vite.config.ts",
-    "test:e2e:watch": "vitest --config ./vite.config.ts"
+    "test:watch": "npm run env-test:load vitest --dir ./src/use-cases",
+    "test:e2e": "npm run env-test:load vitest run --config ./vite-e2e.config.ts",
+    "test:e2e:watch": "npm run env-test:load vitest --config ./vite-e2e.config.ts"
   },
   "keywords": [],
   "author": "",
