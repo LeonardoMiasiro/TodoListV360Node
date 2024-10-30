@@ -13,7 +13,7 @@ export function getTaskController(app: FastifyInstance) {
     },async (request, reply) => {
         const {id} = request.params
         const useCase = makeGetTaskFactory()
-        const task = await useCase.execute({id})
+        const {task} = await useCase.execute({id})
 
         return reply.status(200).send({
             task

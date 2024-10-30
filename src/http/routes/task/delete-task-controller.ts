@@ -13,10 +13,8 @@ export function deleteTaskController(app: FastifyInstance) {
     },async (request, reply) => {
         const {id} = request.params
         const useCase = makeDeleteTaskFactory()
-        const task = await useCase.execute({id})
+        await useCase.execute({id})
 
-        return reply.status(200).send({
-            task
-        })
+        return reply.status(200).send()
     })
 }

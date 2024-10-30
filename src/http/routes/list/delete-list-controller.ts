@@ -13,10 +13,8 @@ export function deleteListController(app: FastifyInstance) {
     }, async (request, reply) => {
         const {id} = request.params
         const useCase = makeDeleteListFactory()
-        const list = await useCase.execute({id})
+        await useCase.execute({id})
 
-        return reply.status(200).send({
-            list
-        })
+        return reply.status(200).send()
     })
 }

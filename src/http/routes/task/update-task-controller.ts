@@ -2,6 +2,7 @@ import {FastifyInstance} from "fastify";
 import {ZodTypeProvider} from "fastify-type-provider-zod";
 import {z} from "zod";
 import {makeUpdateTaskFactory} from "../../../factories/task/make-update-task-factoy";
+import * as console from "node:console";
 
 export function updateTaskController(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().put("/task/:id", {
@@ -20,13 +21,11 @@ export function updateTaskController(app: FastifyInstance) {
         const id = request.params.id
         const body = request.body
         const useCase = makeUpdateTaskFactory()
-        const task = await useCase.execute({
+        await useCase.execute({
             ...body,
             id,
         })
 
-        return reply.status(200).send({
-            task
-        })
+        return reply.status(200).send()
     })
 }
