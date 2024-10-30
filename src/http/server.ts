@@ -6,6 +6,7 @@ import {taskRoutes} from "./routes/task/routes";
 import {listRoutes} from "./routes/list/routes";
 import { ZodError} from "zod";
 import {ErrorHandlerGlobal} from "../use-cases/_errors/error-handler";
+import {env} from "../env/env";
 
 export const app = fastify().withTypeProvider <ZodTypeProvider> ()
 
@@ -35,4 +36,6 @@ app.setErrorHandler((error, _, reply) => {
     });
 });
 
-app.listen({port: 3333, host: "localhost"}).then( () => console.log("Server started"))
+if(env.NODE_ENV !== 'test') {
+    app.listen({port: 3333, host: "localhost"}).then( () => console.log("Server started"))
+}

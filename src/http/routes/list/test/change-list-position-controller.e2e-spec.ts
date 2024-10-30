@@ -4,7 +4,7 @@ import {prisma} from "../../../../lib/prisma";
 import {randomUUID} from "node:crypto";
 import {app} from "../../../server";
 
-describe('Delete List (e2e)', () => {
+describe('Change List Position (e2e)', () => {
     const listId = randomUUID()
 
     beforeAll(async () => {
@@ -25,13 +25,20 @@ describe('Delete List (e2e)', () => {
         await app.close()
     })
 
-    it('should be able to delete a list by Id', async () => {
-        const response = await request(app.server).delete(`/list/${listId}`)
+    it('should be able to change a list position by Id', async () => {
+        const response = await request(app.server).put(`/listPositionChange/${listId}`).send({
+            id: listId,
+            position: 200
+        })
 
         expect(response.statusCode).toEqual(200)
 
         const list = await prisma.list.findFirst()
 
-        expect(list).toEqual(null)
+        expect(list).toEqual({
+            id: list?.id,
+            name: 'Lista 1',
+            position: 200
+        })
     })
 })

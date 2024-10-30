@@ -4,7 +4,7 @@ import {prisma} from "../../../../lib/prisma";
 import {randomUUID} from "node:crypto";
 import {app} from "../../../server";
 
-describe('Delete List (e2e)', () => {
+describe('Get All List (e2e)', () => {
     const listId = randomUUID()
 
     beforeAll(async () => {
@@ -12,26 +12,25 @@ describe('Delete List (e2e)', () => {
     })
 
     beforeEach(async () => {
-        await prisma.list.create({
-            data: {
-                id: listId,
-                name: 'Lista 1',
-                position: 199
-            }
-        })
+        for (let i = 0; i < 4; i++) {
+            await prisma.list.create({
+                data: {
+                    id: listId + i,
+                    name: 'Lista 1',
+                    position: 1
+                }
+            })
+        }
     })
 
     afterAll(async () => {
         await app.close()
     })
 
-    it('should be able to delete a list by Id', async () => {
-        const response = await request(app.server).delete(`/list/${listId}`)
+    it('should be able to get all lists', async () => {
+        const response = await request(app.server).get(`/listAll`)
 
         expect(response.statusCode).toEqual(200)
-
-        const list = await prisma.list.findFirst()
-
-        expect(list).toEqual(null)
+        expect(response.body.list).toHaveLength(4)
     })
 })

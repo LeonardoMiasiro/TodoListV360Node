@@ -11,10 +11,6 @@ describe('Update List (e2e)', () => {
         await app.ready()
     })
 
-    afterAll(async () => {
-        await app.close()
-    })
-
     beforeEach(async () => {
         await prisma.list.create({
             data: {
@@ -23,6 +19,10 @@ describe('Update List (e2e)', () => {
                 position: 199
             }
         })
+    })
+
+    afterAll(async () => {
+        await app.close()
     })
 
     it('should be able to update a list by Id', async () => {

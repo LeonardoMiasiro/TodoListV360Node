@@ -6,7 +6,8 @@ export function getAllListController(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().get("/listAll", {
     }, async (request,reply) => {
         const useCase = makeGetAllListFactory()
-        const list = await useCase.execute()
+        const {list} = await useCase.execute()
+
         return reply.status(200).send({
             list
         })

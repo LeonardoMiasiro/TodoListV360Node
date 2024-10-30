@@ -3,17 +3,12 @@ import request = require("supertest");
 import {prisma} from "../../../../lib/prisma";
 import {randomUUID} from "node:crypto";
 import {app} from "../../../server";
-import {string} from "zod";
 
 describe('Get List (e2e)', () => {
     const listId = randomUUID()
 
     beforeAll(async () => {
         await app.ready()
-    })
-
-    afterAll(async () => {
-        await app.close()
     })
 
     beforeEach(async () => {
@@ -24,6 +19,10 @@ describe('Get List (e2e)', () => {
                 position: 199
             }
         })
+    })
+
+    afterAll(async () => {
+        await app.close()
     })
 
     it('should be able to get a list by Id', async () => {
