@@ -16,10 +16,10 @@ export function createTaskController(app: FastifyInstance) {
     },async (request, reply) => {
         const useCase = makeCreateTaskFactory()
         const body = request.body
-        const task = await useCase.execute(body)
+        const {id} = await useCase.execute(body)
 
         return reply.status(201).send({
-            task
+            id
         })
     })
 }

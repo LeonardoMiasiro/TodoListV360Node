@@ -14,8 +14,10 @@ export function createListController(app: FastifyInstance) {
     }, async (request, reply) => {
         const useCase = makeCreateListFactory()
         const body = request.body
-        await useCase.execute(body)
+        const {id} = await useCase.execute(body)
 
-        return reply.status(201).send()
+        return reply.status(201).send({
+            id
+        })
     })
 }

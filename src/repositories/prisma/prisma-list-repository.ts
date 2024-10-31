@@ -12,10 +12,11 @@ export class PrismaListRepository implements ListRepository {
         return list
     }
 
-    async create(list: Prisma.ListCreateInput): Promise<void> {
-        await prisma.list.create({
+    async create(list: Prisma.ListCreateInput): Promise<string> {
+        const newlist = await prisma.list.create({
             data: list
         })
+        return newlist.id
     }
 
     async update(listId: string, list: Prisma.ListUpdateInput): Promise<void> {

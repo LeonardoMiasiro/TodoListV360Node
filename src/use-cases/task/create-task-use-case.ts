@@ -7,11 +7,15 @@ interface request {
     listPosition: number
 }
 
+interface response {
+    id: string
+}
+
 export class CreateTaskUseCase {
     constructor(private taskRepository: TaskRepository) {}
 
-    async execute({name,listId,listPosition,description}: request): Promise<void> {
-        await this.taskRepository.create({
+    async execute({name,listId,listPosition,description}: request): Promise<response> {
+        const taskId = await this.taskRepository.create({
             name,
             description,
             listPosition,
@@ -21,5 +25,9 @@ export class CreateTaskUseCase {
                 }
             }
         })
+
+        return {
+            id: taskId
+        }
     }
 }

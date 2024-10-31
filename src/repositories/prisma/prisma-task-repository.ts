@@ -12,10 +12,11 @@ export class PrismaTaskRepository implements TaskRepository {
         return task
     }
 
-    async create(task: Prisma.TaskCreateInput): Promise<void> {
-        await prisma.task.create({
+    async create(task: Prisma.TaskCreateInput): Promise<string> {
+        const newtask = await prisma.task.create({
             data: task
         })
+        return newtask.id
     }
 
     async update(taskId: string, task: Prisma.TaskUpdateInput): Promise<void> {

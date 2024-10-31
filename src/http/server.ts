@@ -1,19 +1,19 @@
 import  {fastify} from "fastify";
 import {serializerCompiler, validatorCompiler, ZodTypeProvider} from "fastify-type-provider-zod";
-import * as fastifyCors from "@fastify/cors";
 import {healthCheck} from "./routes/api";
 import {taskRoutes} from "./routes/task/routes";
 import {listRoutes} from "./routes/list/routes";
 import { ZodError} from "zod";
 import {ErrorHandlerGlobal} from "../use-cases/_errors/error-handler";
 import {env} from "../env/env";
+import {fastifyCors} from "@fastify/cors";
 
 export const app = fastify().withTypeProvider <ZodTypeProvider> ()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
 
-//app.register(fastifyCors)
+app.register(fastifyCors)
 app.register(healthCheck)
 app.register(taskRoutes)
 app.register(listRoutes)
