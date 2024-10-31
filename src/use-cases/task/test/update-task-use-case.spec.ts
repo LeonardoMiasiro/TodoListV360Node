@@ -1,8 +1,8 @@
 import {beforeEach, describe, expect} from "vitest";
-import {prisma} from "../../../lib/prisma";
 import {randomUUID} from "node:crypto";
 import {makeUpdateTaskFactory} from "../../../factories/task/make-update-task-factoy";
 import {execSync} from "node:child_process";
+import {prisma} from "../../../lib/prisma";
 
 describe('Update Task', () => {
     const sut = makeUpdateTaskFactory()

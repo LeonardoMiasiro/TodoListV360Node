@@ -1,8 +1,8 @@
 import {beforeEach, describe, expect} from "vitest";
-import {prisma} from "../../../lib/prisma";
 import {randomUUID} from "node:crypto";
 import {makeDeleteTaskFactory} from "../../../factories/task/make-delete-task-factory";
 import {execSync} from "node:child_process";
+import {prisma} from "../../../lib/prisma";
 
 describe('Delete Task', () => {
     const sut = makeDeleteTaskFactory()
