@@ -24,7 +24,7 @@ app.setErrorHandler((error, _, reply) => {
             message: 'Validation error', issues: error.format()
         });
     }
-    console.log(error)
+
     if (error instanceof ErrorHandlerGlobal) {
         return reply.status(error.statusCode).send({
             message: error.message
