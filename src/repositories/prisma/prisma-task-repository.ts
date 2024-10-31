@@ -1,5 +1,5 @@
 import {Prisma, Task} from "@prisma/client";
-import {TaskRepository} from "../Interface/task-repository";
+import {TaskRepository, updateManyPositionsProps} from "../Interface/task-repository";
 import {prisma} from "../../lib/prisma";
 
 export class PrismaTaskRepository implements TaskRepository {
@@ -26,6 +26,19 @@ export class PrismaTaskRepository implements TaskRepository {
             },
             data: task
         })
+    }
+
+    async updateManyPositions(tasksPosition: updateManyPositionsProps[]): Promise<void> {
+        await Promise.all(
+            tasksPosition.map(task => prisma.task.update({
+                data: {
+                    listPosition: task.position
+                },
+                where: {
+                    id: task.taskId
+                }
+            }))
+        )
     }
 
     async delete(id: string): Promise<void> {
